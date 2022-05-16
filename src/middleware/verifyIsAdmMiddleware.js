@@ -10,7 +10,7 @@ const verifyIsAdmMiddleware = (request, response, next) => {
 
   const user = users.find((e) => e.email === email);
 
-  if (!user.isAdm) {
+  if (!user) {
     return response.status(400).json({ message: "Admin permission required!" });
   }
 
