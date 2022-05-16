@@ -9,7 +9,7 @@ const updateUsersService = (id, email, name) => {
     email,
     updatedOn: date,
   };
-  console.log(email);
+
   const userIndex = users.findIndex((item) => item.id === id);
 
   if (userIndex === -1) {
