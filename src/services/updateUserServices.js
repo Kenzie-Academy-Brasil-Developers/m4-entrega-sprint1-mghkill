@@ -10,6 +10,8 @@ const updateUsersService = (id, email, name) => {
     updatedOn: date,
   };
 
+  //como atualizar o todos os dados incluindo o password
+
   const userIndex = users.findIndex((item) => item.id === id);
 
   if (userIndex === -1) {

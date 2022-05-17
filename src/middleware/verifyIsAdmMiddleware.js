@@ -14,6 +14,10 @@ const verifyIsAdmMiddleware = (request, response, next) => {
     return response.status(400).json({ message: "Admin permission required!" });
   }
 
+  if (!user.isAdm) {
+    return response.status(400).json({ message: "Admin permission required!" });
+  }
+
   next();
 };
 
