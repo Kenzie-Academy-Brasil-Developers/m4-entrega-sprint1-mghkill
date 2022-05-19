@@ -8,6 +8,7 @@ import userLoginController from "../controllers/userLoginController";
 import verifyAuthMiddleware from "../middleware/verifyAuthMiddleware";
 import verifyEmailMiddleware from "../middleware/verifyEmailMiddleware";
 import verifyIsAdmMiddleware from "../middleware/verifyIsAdmMiddleware";
+import verifyKeysMiddleware from "../middleware/verifyKeysMiddleware";
 
 const router = Router();
 
@@ -34,6 +35,8 @@ router.delete(
 router.put(
   "/users/:id",
   verifyAuthMiddleware,
+  verifyKeysMiddleware,
+  verifyEmailMiddleware,
   verifyIsAdmMiddleware,
   updateUsersController
 );
