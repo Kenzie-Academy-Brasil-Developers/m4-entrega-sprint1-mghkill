@@ -1,16 +1,15 @@
+import bcrypt from "bcryptjs/dist/bcrypt";
 import users from "../database";
 
-const updateUsersService = (id, email, name) => {
+const updateUsersService = async (id, data, password = "123") => {
   const date = new Date();
+  const hashedPass = await bcrypt.hash(password, 10);
 
-  const user = {
-    id,
-    name,
-    email,
-    updatedOn: date,
-  };
-
-  //como atualizar o todos os dados incluindo o password
+  data.id = id;
+  data.updatedOn = date;
+  if (data.password) {
+    data.password = hashedPass;
+  }
 
   const userIndex = users.findIndex((item) => item.id === id);
 
@@ -18,8 +17,9 @@ const updateUsersService = (id, email, name) => {
     return { Message: "User not found" };
   }
 
-  users[userIndex] = { ...users[userIndex], ...user };
+  users[userIndex] = { ...users[userIndex], ...data };
 
   return users[userIndex];
 };
+
 export default updateUsersService;
